@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Binary directory (created during postinstall)
+bin/
+
+# Test artifacts
+*.log
+*.tmp
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.tgz
+package-lock.json
+yarn.lock
+
+# ESLint cache
+.eslintcache

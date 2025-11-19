@@ -1,0 +1,37 @@
+# Development files
+test/
+.github/
+.vscode/
+.idea/
+
+# Git
+.git/
+.gitignore
+
+# CI/CD
+*.yml
+*.yaml
+
+# Documentation (except README)
+docs/
+
+# IDE
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Binary directory (downloaded during postinstall)
+bin/
+
+# ESLint
+.eslintrc*
+.eslintcache
+
+# Misc
+*.log
+*.tmp
+.env
