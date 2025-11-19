@@ -1,5 +1,5 @@
 {
-  "name": "code-search-mcp-universal-ctags",
+  "name": "@LLMTooling/code-search-mcp-universal-ctags",
   "version": "0.1.0",
   "description": "Node module for using universal-ctags with pre-built binaries",
   "main": "lib/index.js",

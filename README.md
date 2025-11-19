@@ -41,18 +41,37 @@ This package is designed for use with the Model Context Protocol (MCP) and other
 
 ### From GitHub Packages
 
-```bash
-npm install code-search-mcp-universal-ctags
-```
+This package is published to GitHub Packages and requires authentication to install.
 
-> Note: This package is distributed via GitHub Packages. You may need to configure npm to use the GitHub Package Registry for the @LLMTooling scope.
+#### Step 1: Create a GitHub Personal Access Token
 
-### Configuration for GitHub Packages
+1. Go to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)
+2. Generate new token with `read:packages` scope
+3. Copy the token
 
-Create or update your `.npmrc` file:
+#### Step 2: Configure npm Authentication
+
+Create or update `.npmrc` in your project root or home directory:
 
 ```
 @LLMTooling:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
+```
+
+Replace `YOUR_GITHUB_TOKEN` with your personal access token.
+
+#### Step 3: Install the Package
+
+```bash
+npm install @LLMTooling/code-search-mcp-universal-ctags
+```
+
+**Alternative: Using environment variable**
+
+```bash
+echo "@LLMTooling:registry=https://npm.pkg.github.com" > .npmrc
+export NODE_AUTH_TOKEN=YOUR_GITHUB_TOKEN
+npm install @LLMTooling/code-search-mcp-universal-ctags
 ```
 
 ---
@@ -62,7 +81,7 @@ Create or update your `.npmrc` file:
 ### Basic Usage
 
 ```javascript
-const { ctagsPath } = require('code-search-mcp-universal-ctags');
+const { ctagsPath } = require('@LLMTooling/code-search-mcp-universal-ctags');
 
 console.log('ctags binary location:', ctagsPath);
 // Use ctagsPath with child_process to run ctags commands
@@ -72,7 +91,7 @@ console.log('ctags binary location:', ctagsPath);
 
 ```javascript
 const { execSync } = require('child_process');
-const { ctagsPath } = require('code-search-mcp-universal-ctags');
+const { ctagsPath } = require('@LLMTooling/code-search-mcp-universal-ctags');
 
 // Get ctags version
 const version = execSync(`"${ctagsPath}" --version`, { encoding: 'utf8' });
@@ -86,7 +105,7 @@ execSync(`"${ctagsPath}" -R --fields=+nKz --extras=+q .`, { cwd: '/path/to/proje
 
 ```javascript
 const { spawn } = require('child_process');
-const { ctagsPath } = require('code-search-mcp-universal-ctags');
+const { ctagsPath } = require('@LLMTooling/code-search-mcp-universal-ctags');
 
 const ctags = spawn(ctagsPath, ['--version']);
 
@@ -288,7 +307,7 @@ If the download fails:
 If you encounter permission errors:
 
 ```bash
-chmod +x node_modules/code-search-mcp-universal-ctags/bin/ctags
+chmod +x node_modules/@LLMTooling/code-search-mcp-universal-ctags/bin/ctags
 ```
 
 ---
