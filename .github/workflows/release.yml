@@ -1,0 +1,89 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., 0.1.0, 1.0.0)'
+        required: true
+        type: string
+      prerelease:
+        description: 'Mark as pre-release'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate version format
+        run: |
+          if ! echo "${{ inputs.version }}" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?$'; then
+            echo "Error: Invalid version format. Expected format: X.Y.Z or X.Y.Z-suffix"
+            exit 1
+          fi
+
+      - name: Update package version
+        run: |
+          npm version ${{ inputs.version }} --no-git-tag-version
+          echo "Updated package.json to version ${{ inputs.version }}"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build package tarball
+        run: |
+          npm pack
+          echo "TARBALL=$(ls *.tgz)" >> $GITHUB_ENV
+
+      - name: Display package info
+        run: |
+          echo "Package: $(node -p "require('./package.json').name")"
+          echo "Version: $(node -p "require('./package.json').version")"
+          echo "Tarball: ${{ env.TARBALL }}"
+          ls -lh *.tgz
+
+      - name: Create Git tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "v${{ inputs.version }}" -m "Release v${{ inputs.version }}"
+          git push origin "v${{ inputs.version }}"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ inputs.version }}
+          name: Release v${{ inputs.version }}
+          draft: false
+          prerelease: ${{ inputs.prerelease }}
+          generate_release_notes: true
+          files: |
+            ${{ env.TARBALL }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release summary
+        run: |
+          echo "✅ Successfully created release v${{ inputs.version }}"
+          echo ""
+          echo "📦 Tarball: ${{ env.TARBALL }}"
+          echo "🔗 Release: https://github.com/${{ github.repository }}/releases/tag/v${{ inputs.version }}"
+          echo ""
+          echo "To install this version:"
+          echo "  npm install https://github.com/${{ github.repository }}/releases/download/v${{ inputs.version }}/${{ env.TARBALL }}"
