@@ -1,8 +1,8 @@
 <div align="center">
 
-# code-search-mcp-universal-ctags
+<h1>code-search-mcp-universal-ctags</h1>
 
-**Node.js package bundling universal-ctags binaries for cross-platform code indexing**
+<p><b>Node.js package bundling universal-ctags binaries for cross-platform code indexing</b></p>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 [![Node Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg?style=for-the-badge)](package.json)
