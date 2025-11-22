@@ -1,95 +1,135 @@
 <div align="center">
 
-# code-search-mcp-universal-ctags
+<h1>code-search-mcp-universal-ctags</h1>
 
-**Node.js package bundling universal-ctags binaries for cross-platform code indexing**
+<p><b>Node.js package bundling universal-ctags binaries for cross-platform code indexing</b></p>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Node Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](package.json)
-[![Platform Support](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)](#platform-support)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
+[![Node Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg?style=for-the-badge)](package.json)
+[![Platform Support](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg?style=for-the-badge)](#platform-support)
 
 </div>
-
----
-
-## Overview
-
-`code-search-mcp-universal-ctags` provides pre-built universal-ctags binaries for Node.js projects, eliminating the need for manual installation. The package automatically downloads and configures the appropriate binary for your platform during installation.
-
-This package is designed for use with the Model Context Protocol (MCP) and other code analysis tools that require universal-ctags functionality.
-
----
-
-## Features
 
 <div align="center">
 
-| Feature | Status | Notes |
-|---------|--------|-------|
-| Automatic Binary Download | ✅ Full | Downloads during npm install |
-| Cross-Platform Support | ✅ Full | Windows, macOS, Linux |
-| Zero Configuration | ✅ Full | Works out of the box |
-| ARM64 Support | ✅ Full | Native Apple Silicon and ARM Linux |
-| Offline Fallback | ✅ Full | Manual installation instructions provided |
-| GitHub Token Support | ✅ Full | Respects GITHUB_TOKEN for rate limits |
+<h1>Overview</h1>
+
+<p>Pre-built universal-ctags binaries for Node.js projects, eliminating manual installation complexity. The package automatically downloads and configures platform-specific binaries during installation, providing seamless code indexing capabilities for MCP servers and code analysis tools.</p>
 
 </div>
 
----
+<div align="center">
 
-## Installation
+<h2>Core Capabilities</h2>
 
-### From GitHub Packages
+<table>
+  <tr>
+    <th>Capability</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>Automatic Binary Management</td>
+    <td>Downloads and configures platform-specific ctags binaries during npm install with zero configuration required.</td>
+  </tr>
+  <tr>
+    <td>Cross-Platform Support</td>
+    <td>Native binaries for Windows (x64/x86), macOS (Intel/Apple Silicon), and Linux (x64/ARM64).</td>
+  </tr>
+  <tr>
+    <td>GitHub API Integration</td>
+    <td>Respects GITHUB_TOKEN for rate limit management and supports offline fallback installation.</td>
+  </tr>
+  <tr>
+    <td>MCP Ecosystem Ready</td>
+    <td>Purpose-built for Model Context Protocol servers requiring universal-ctags functionality.</td>
+  </tr>
+</table>
 
-This package is published to GitHub Packages and requires authentication to install.
+</div>
 
-#### Step 1: Create a GitHub Personal Access Token
+<div align="center">
 
-1. Go to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)
-2. Generate new token with `read:packages` scope
-3. Copy the token
+<h1>Installation</h1>
 
-#### Step 2: Configure npm Authentication
+</div>
 
-Create or update `.npmrc` in your project root or home directory:
+<div align="center">
 
-```
-@LLMTooling:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
-```
+<h2>From GitHub Packages</h2>
 
-Replace `YOUR_GITHUB_TOKEN` with your personal access token.
+<p>This package is published to GitHub Packages and requires authentication to install.</p>
 
-#### Step 3: Install the Package
+<table>
+  <tr>
+    <th>Step</th>
+    <th>Instructions</th>
+  </tr>
+  <tr>
+    <td><b>1. Create GitHub Personal Access Token</b></td>
+    <td>
+      Navigate to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)<br>
+      Generate new token with <code>read:packages</code> scope<br>
+      Copy the generated token
+    </td>
+  </tr>
+  <tr>
+    <td><b>2. Configure npm Authentication</b></td>
+    <td>
+      <pre style="text-align: left;">
+# Create .npmrc in project root or home directory
+echo "@LLMTooling:registry=https://npm.pkg.github.com" > .npmrc
+echo "//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN" >> .npmrc</pre>
+    </td>
+  </tr>
+  <tr>
+    <td><b>3. Install the Package</b></td>
+    <td>
+      <pre style="text-align: left;">npm install @LLMTooling/code-search-mcp-universal-ctags</pre>
+    </td>
+  </tr>
+</table>
 
-```bash
-npm install @LLMTooling/code-search-mcp-universal-ctags
-```
+<br>
 
-**Alternative: Using environment variable**
-
-```bash
+<table>
+  <tr>
+    <th>Alternative: Environment Variable Installation</th>
+  </tr>
+  <tr>
+    <td>
+      <pre style="text-align: left;">
 echo "@LLMTooling:registry=https://npm.pkg.github.com" > .npmrc
 export NODE_AUTH_TOKEN=YOUR_GITHUB_TOKEN
-npm install @LLMTooling/code-search-mcp-universal-ctags
-```
+npm install @LLMTooling/code-search-mcp-universal-ctags</pre>
+    </td>
+  </tr>
+</table>
 
----
+</div>
 
-## Usage
+<div align="center">
 
-### Basic Usage
+<h1>Usage</h1>
 
-```javascript
+<table>
+  <tr>
+    <th>Usage Pattern</th>
+    <th>Code Example</th>
+  </tr>
+  <tr>
+    <td><b>Basic Usage</b></td>
+    <td>
+      <pre style="text-align: left;">
 const { ctagsPath } = require('@LLMTooling/code-search-mcp-universal-ctags');
 
 console.log('ctags binary location:', ctagsPath);
-// Use ctagsPath with child_process to run ctags commands
-```
-
-### With Child Process
-
-```javascript
+// Use ctagsPath with child_process to run ctags commands</pre>
+    </td>
+  </tr>
+  <tr>
+    <td><b>With execSync</b></td>
+    <td>
+      <pre style="text-align: left;">
 const { execSync } = require('child_process');
 const { ctagsPath } = require('@LLMTooling/code-search-mcp-universal-ctags');
 
@@ -98,12 +138,15 @@ const version = execSync(`"${ctagsPath}" --version`, { encoding: 'utf8' });
 console.log(version);
 
 // Generate tags for a project
-execSync(`"${ctagsPath}" -R --fields=+nKz --extras=+q .`, { cwd: '/path/to/project' });
-```
-
-### With Spawn
-
-```javascript
+execSync(`"${ctagsPath}" -R --fields=+nKz --extras=+q .`, {
+  cwd: '/path/to/project'
+});</pre>
+    </td>
+  </tr>
+  <tr>
+    <td><b>With spawn</b></td>
+    <td>
+      <pre style="text-align: left;">
 const { spawn } = require('child_process');
 const { ctagsPath } = require('@LLMTooling/code-search-mcp-universal-ctags');
 
@@ -115,38 +158,172 @@ ctags.stdout.on('data', (data) => {
 
 ctags.stderr.on('data', (data) => {
   console.error(`stderr: ${data}`);
-});
-```
-
----
-
-## Platform Support
-
-<div align="center">
-
-| Platform | Architecture | Status | Binary Source |
-|----------|--------------|--------|---------------|
-| Windows | x64 | ✅ Supported | [ctags-win32](https://github.com/universal-ctags/ctags-win32) |
-| Windows | x86 | ✅ Supported | [ctags-win32](https://github.com/universal-ctags/ctags-win32) |
-| macOS | x64 (Intel) | ✅ Supported | [ctags-nightly-build](https://github.com/universal-ctags/ctags-nightly-build) |
-| macOS | ARM64 (Apple Silicon) | ✅ Supported | [ctags-nightly-build](https://github.com/universal-ctags/ctags-nightly-build) |
-| Linux | x64 | ✅ Supported | [ctags-nightly-build](https://github.com/universal-ctags/ctags-nightly-build) |
-| Linux | ARM64 | ✅ Supported | [ctags-nightly-build](https://github.com/universal-ctags/ctags-nightly-build) |
+});</pre>
+    </td>
+  </tr>
+</table>
 
 </div>
 
----
+<div align="center">
 
-## Development
+<h1>Platform Support</h1>
 
-### Prerequisites
+<table>
+  <tr>
+    <th>Platform</th>
+    <th>Architecture</th>
+    <th>Binary Source</th>
+  </tr>
+  <tr>
+    <td>Windows</td>
+    <td>x64, x86</td>
+    <td><a href="https://github.com/universal-ctags/ctags-win32">ctags-win32</a></td>
+  </tr>
+  <tr>
+    <td>macOS</td>
+    <td>x64 (Intel), ARM64 (Apple Silicon)</td>
+    <td><a href="https://github.com/universal-ctags/ctags-nightly-build">ctags-nightly-build</a></td>
+  </tr>
+  <tr>
+    <td>Linux</td>
+    <td>x64, ARM64</td>
+    <td><a href="https://github.com/universal-ctags/ctags-nightly-build">ctags-nightly-build</a></td>
+  </tr>
+</table>
 
-- Node.js >= 18.0.0
-- npm or yarn
+</div>
 
-### Setup
+<div align="center">
 
-```bash
+<h1>Architecture</h1>
+
+</div>
+
+<div align="center">
+
+<h2>Package Structure</h2>
+
+<table>
+  <tr>
+    <th>File Tree</th>
+  </tr>
+  <tr>
+    <td>
+      <pre style="text-align: left;">
+code-search-mcp-universal-ctags/
+├── lib/
+│   ├── index.js          # Main entry point
+│   ├── postinstall.js    # Download and setup logic
+│   └── util.js           # Helper functions
+├── test/
+│   └── basic.test.js     # Test suite
+├── bin/                  # Created during install (git-ignored)
+│   └── ctags(.exe)       # Platform-specific binary
+└── package.json</pre>
+    </td>
+  </tr>
+</table>
+
+</div>
+
+<div align="center">
+
+<h2>How It Works</h2>
+
+<table>
+  <tr>
+    <th>Phase</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><b>Installation</b></td>
+    <td>npm install triggers the postinstall script</td>
+  </tr>
+  <tr>
+    <td><b>Platform Detection</b></td>
+    <td>Determines operating system and CPU architecture</td>
+  </tr>
+  <tr>
+    <td><b>Download</b></td>
+    <td>Fetches appropriate binary from GitHub releases</td>
+  </tr>
+  <tr>
+    <td><b>Extraction</b></td>
+    <td>Extracts binary to the bin/ directory</td>
+  </tr>
+  <tr>
+    <td><b>Permissions</b></td>
+    <td>Sets executable permissions on Unix systems</td>
+  </tr>
+  <tr>
+    <td><b>Verification</b></td>
+    <td>Main module verifies binary existence before exporting path</td>
+  </tr>
+</table>
+
+</div>
+
+<div align="center">
+
+<h1>Configuration</h1>
+
+</div>
+
+<div align="center">
+
+<h2>Environment Variables</h2>
+
+<table>
+  <tr>
+    <th>Variable</th>
+    <th>Purpose</th>
+    <th>Default</th>
+  </tr>
+  <tr>
+    <td><code>GITHUB_TOKEN</code></td>
+    <td>GitHub API authentication to avoid rate limits</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td><code>SKIP_POSTINSTALL</code></td>
+    <td>Skip automatic binary download during installation</td>
+    <td>false</td>
+  </tr>
+</table>
+
+<br>
+
+<table>
+  <tr>
+    <th>Example Usage</th>
+  </tr>
+  <tr>
+    <td>
+      <pre style="text-align: left;">
+# Avoid GitHub API rate limits
+export GITHUB_TOKEN=your_github_token
+npm install
+
+# Skip automatic binary download
+SKIP_POSTINSTALL=1 npm install</pre>
+    </td>
+  </tr>
+</table>
+
+</div>
+
+<div align="center">
+
+<h1>Development</h1>
+
+<table>
+  <tr>
+    <th>Setup & Testing</th>
+  </tr>
+  <tr>
+    <td>
+      <pre style="text-align: left;">
 # Clone the repository
 git clone https://github.com/LLMTooling/code-search-mcp-universal-ctags.git
 cd code-search-mcp-universal-ctags
@@ -161,186 +338,160 @@ npm test
 npm run lint
 
 # Fix linting issues
-npm run lint:fix
-```
-
-### Running Tests
-
-The package includes comprehensive tests that verify:
-
-- Binary download and extraction
-- Binary executable permissions
-- Binary functionality (version check)
-- Tag generation capabilities
-
-```bash
-npm test
-```
-
----
-
-## Testing Across Platforms
-
-The project includes GitHub Actions workflows for automated testing on all supported platforms:
-
-<div align="center">
-
-| Workflow | Purpose | Trigger |
-|----------|---------|---------|
-| Platform Tests | Test on Windows, macOS (x64/ARM64), Linux | Manual, Push, PR |
-| Publish | Publish to GitHub Packages | Manual, Release |
+npm run lint:fix</pre>
+    </td>
+  </tr>
+</table>
 
 </div>
 
-To run platform tests manually, trigger the "Platform Tests" workflow from the GitHub Actions tab.
-
----
-
-## Architecture
-
-### Package Structure
-
-```
-code-search-mcp-universal-ctags/
-├── lib/
-│   ├── index.js          # Main entry point
-│   ├── postinstall.js    # Download and setup logic
-│   └── util.js           # Helper functions
-├── test/
-│   └── basic.test.js     # Test suite
-├── bin/                  # Created during install (git-ignored)
-│   └── ctags(.exe)       # Platform-specific binary
-└── package.json
-```
-
-### How It Works
-
-1. **Installation**: When you run `npm install`, the postinstall script executes
-2. **Platform Detection**: Determines your OS and architecture
-3. **Download**: Fetches the appropriate binary from GitHub releases
-4. **Extraction**: Extracts the binary to the `bin/` directory
-5. **Permissions**: Sets executable permissions on Unix systems
-6. **Verification**: Main module verifies binary exists before exporting path
-
----
-
-## Environment Variables
-
 <div align="center">
 
-| Variable | Purpose | Default |
-|----------|---------|---------|
-| `GITHUB_TOKEN` | GitHub API authentication (avoids rate limits) | None |
-| `SKIP_POSTINSTALL` | Skip automatic binary download | `false` |
+<h2>Test Coverage</h2>
+
+<p>Comprehensive tests verify binary download, extraction, executable permissions, functionality, and tag generation capabilities.</p>
+
+<table>
+  <tr>
+    <th>CI/CD Workflows</th>
+    <th>Purpose</th>
+    <th>Platforms</th>
+  </tr>
+  <tr>
+    <td>Platform Tests</td>
+    <td>Automated testing on all supported platforms</td>
+    <td>Windows, macOS (x64/ARM64), Linux</td>
+  </tr>
+  <tr>
+    <td>Publish</td>
+    <td>Publish package to GitHub Packages</td>
+    <td>N/A</td>
+  </tr>
+</table>
 
 </div>
 
-### Using GITHUB_TOKEN
+<div align="center">
 
-To avoid GitHub API rate limits:
+<h1>Troubleshooting</h1>
 
-```bash
-export GITHUB_TOKEN=your_github_token
-npm install
-```
+<table>
+  <tr>
+    <th>Issue</th>
+    <th>Solution</th>
+  </tr>
+  <tr>
+    <td><b>Binary Not Found</b></td>
+    <td>
+      Ensure postinstall script ran successfully<br>
+      Verify bin/ directory exists<br>
+      Try reinstalling: <code>rm -rf node_modules && npm install</code>
+    </td>
+  </tr>
+  <tr>
+    <td><b>Download Failures</b></td>
+    <td>
+      Check internet connection and GitHub accessibility<br>
+      Use GITHUB_TOKEN to avoid rate limits<br>
+      Consider manual installation
+    </td>
+  </tr>
+  <tr>
+    <td><b>Permission Errors (Unix)</b></td>
+    <td>
+      <code>chmod +x node_modules/@LLMTooling/code-search-mcp-universal-ctags/bin/ctags</code>
+    </td>
+  </tr>
+</table>
 
-### Skipping Postinstall
-
-If you want to install the package without downloading the binary:
-
-```bash
-SKIP_POSTINSTALL=1 npm install
-```
-
----
-
-## Manual Installation
-
-If automatic installation fails, you can install universal-ctags manually:
-
-### macOS
-
-```bash
-brew install universal-ctags
-```
-
-### Linux (Ubuntu/Debian)
-
-```bash
-sudo apt install universal-ctags
-```
-
-### Linux (Snap)
-
-```bash
-sudo snap install universal-ctags
-```
-
-### Windows
-
-Download the latest release from:
-[https://github.com/universal-ctags/ctags-win32/releases](https://github.com/universal-ctags/ctags-win32/releases)
-
----
-
-## Troubleshooting
-
-### Binary Not Found
-
-If you see an error about the binary not being found:
-
-1. Ensure the postinstall script ran successfully
-2. Check that the `bin/` directory exists
-3. Try reinstalling: `rm -rf node_modules && npm install`
-
-### Download Failures
-
-If the download fails:
-
-1. Check your internet connection
-2. Verify GitHub is accessible
-3. Try using a GITHUB_TOKEN to avoid rate limits
-4. Consider manual installation
-
-### Permission Errors (Unix)
-
-If you encounter permission errors:
-
-```bash
-chmod +x node_modules/@LLMTooling/code-search-mcp-universal-ctags/bin/ctags
-```
-
----
-
-## Contributing
-
-Contributions are welcome! Please follow these guidelines:
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests and linting
-5. Submit a pull request
-
----
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## Acknowledgments
-
-- [Universal Ctags](https://github.com/universal-ctags/ctags) - The main ctags project
-- [ctags-win32](https://github.com/universal-ctags/ctags-win32) - Windows binaries
-- [ctags-nightly-build](https://github.com/universal-ctags/ctags-nightly-build) - Unix binaries
-- [vscode-ripgrep](https://github.com/microsoft/vscode-ripgrep) - Inspiration for package structure
-
----
+</div>
 
 <div align="center">
 
-**Built for the Model Context Protocol ecosystem**
+<h2>Manual Installation</h2>
+
+<p>If automatic installation fails, install universal-ctags manually:</p>
+
+<table>
+  <tr>
+    <th>Platform</th>
+    <th>Installation Command</th>
+  </tr>
+  <tr>
+    <td>macOS</td>
+    <td><code>brew install universal-ctags</code></td>
+  </tr>
+  <tr>
+    <td>Linux (Ubuntu/Debian)</td>
+    <td><code>sudo apt install universal-ctags</code></td>
+  </tr>
+  <tr>
+    <td>Linux (Snap)</td>
+    <td><code>sudo snap install universal-ctags</code></td>
+  </tr>
+  <tr>
+    <td>Windows</td>
+    <td>Download from <a href="https://github.com/universal-ctags/ctags-win32/releases">ctags-win32 releases</a></td>
+  </tr>
+</table>
+
+</div>
+
+<div align="center">
+
+<h1>Contributing & License</h1>
+
+<table>
+  <tr>
+    <th>Contributing</th>
+    <th>License</th>
+  </tr>
+  <tr>
+    <td>
+      Fork the repository<br>
+      Create a feature branch<br>
+      Make changes and add tests<br>
+      Run tests and linting<br>
+      Submit a pull request
+    </td>
+    <td>
+      Released under the MIT License<br>
+      See <a href="LICENSE">LICENSE</a> file for details
+    </td>
+  </tr>
+</table>
+
+</div>
+
+<div align="center">
+
+<h1>Acknowledgments</h1>
+
+<table>
+  <tr>
+    <th>Project</th>
+    <th>Contribution</th>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/universal-ctags/ctags">Universal Ctags</a></td>
+    <td>Core ctags implementation</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/universal-ctags/ctags-win32">ctags-win32</a></td>
+    <td>Windows binary distribution</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/universal-ctags/ctags-nightly-build">ctags-nightly-build</a></td>
+    <td>Unix binary distribution</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/microsoft/vscode-ripgrep">vscode-ripgrep</a></td>
+    <td>Package structure inspiration</td>
+  </tr>
+</table>
+
+<br>
+
+<p><b>Built for the Model Context Protocol ecosystem</b></p>
 
 </div>
