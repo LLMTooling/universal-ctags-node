@@ -1,7 +1,7 @@
 {
-  "name": "@LLMTooling/code-search-mcp-universal-ctags",
+  "name": "@LLMTooling/universal-ctags-node",
   "version": "0.1.0",
-  "description": "Node module for using universal-ctags with pre-built binaries",
+  "description": "Node wrapper for universal-ctags with pre-built binaries",
   "main": "lib/index.js",
   "scripts": {
     "postinstall": "node lib/postinstall.js",
@@ -19,7 +19,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LLMTooling/code-search-mcp-universal-ctags"
+    "url": "https://github.com/LLMTooling/universal-ctags-node"
   },
   "engines": {
     "node": ">=18.0.0"
