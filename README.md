@@ -12,14 +12,6 @@
 
 <div align="center">
 
-<h1>Overview</h1>
-
-<p>Pre-built universal-ctags binaries for Node.js projects, eliminating manual installation complexity. The package automatically downloads and configures platform-specific binaries during installation, providing seamless code indexing capabilities for MCP servers and code analysis tools.</p>
-
-</div>
-
-<div align="center">
-
 <h2>Core Capabilities</h2>
 
 <table>
@@ -36,11 +28,7 @@
     <td>Native binaries for Windows (x64/x86), macOS (Intel/Apple Silicon), and Linux (x64/ARM64).</td>
   </tr>
   <tr>
-    <td>GitHub API Integration</td>
-    <td>Respects GITHUB_TOKEN for rate limit management and supports offline fallback installation.</td>
-  </tr>
-  <tr>
-    <td>MCP Ecosystem Ready</td>
+    <td>MCP Ready</td>
     <td>Purpose-built for Model Context Protocol servers requiring universal-ctags functionality.</td>
   </tr>
 </table>
