@@ -6,9 +6,23 @@ on:
     branches:
       - main
       - 'claude/**'
+    paths:
+      - 'lib/**'
+      - 'test/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'eslint.config.js'
+      - '.github/workflows/test-platforms.yml'
   pull_request:
     branches:
       - main
+    paths:
+      - 'lib/**'
+      - 'test/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'eslint.config.js'
+      - '.github/workflows/test-platforms.yml'
 
 jobs:
   test-windows:
@@ -37,7 +51,7 @@ jobs:
 
   test-macos-x64:
     name: Test on macOS (x64)
-    runs-on: macos-13
+    runs-on: macos-15-intel
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
