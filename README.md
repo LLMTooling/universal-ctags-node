@@ -4,9 +4,13 @@
 
 <p><b>Node.js wrapper for universal-ctags binaries for cross-platform code indexing</b></p>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
-[![Node Version](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg?style=for-the-badge)](package.json)
-[![Platform Support](https://img.shields.io/badge/ctags-6.2.1-lightgrey.svg?style=for-the-badge)](#platform-support)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](LICENSE)
+[![Node Version](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg?style=flat)](package.json)
+[![Platform Support](https://img.shields.io/badge/ctags-6.2.1-lightgrey.svg?style=flat)](#platform-support)
+[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg?style=flat)](package.json)
+[![adm-zip](https://img.shields.io/badge/adm--zip-%5E0.5.16-blue.svg?style=flat)](https://www.npmjs.com/package/adm-zip)
+[![tar](https://img.shields.io/badge/tar-%5E7.4.3-blue.svg?style=flat)](https://www.npmjs.com/package/tar)
+[![eslint](https://img.shields.io/badge/eslint-%5E9.17.0-blue.svg?style=flat)](https://www.npmjs.com/package/eslint)
 
 </div>
 
