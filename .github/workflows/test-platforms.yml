@@ -51,7 +51,7 @@ jobs:
 
   test-macos-x64:
     name: Test on macOS (x64)
-    runs-on: macos-13
+    runs-on: macos-15-intel
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
